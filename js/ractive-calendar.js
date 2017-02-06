@@ -40,7 +40,6 @@ var Calendar = Ractive.extend({
 		this.set('value',value)
 		this.renderCalendar(this.get('view_month'), value, this.get('today') )
 		this.fire('change', this, value )
-
 	},
 	renderCalendar: function(view_month, selected_date, today ) {
 		//console.log("renderCalendar month=",view_month," selected date=",selected_date, " today=", today )
@@ -67,7 +66,6 @@ var Calendar = Ractive.extend({
 
 		this.set('view_month', $value ? $value.substr(0,7) : $today.substr(0,7))
 		this.set('today', $today)
-		//this.renderCalendar(this.get('view_month'), this.get('value'), this.get('today') )
 
 		this.observe( 'view_month', function ( view_month ) {
 			var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -75,6 +73,7 @@ var Calendar = Ractive.extend({
 			this.set('head_month_name', monthNames[parseInt(view_month.substr(5,2))-1] )
 			this.set('head_year', view_month.substr(0,4))
 			this.renderCalendar(view_month, $value, $today )
+			this.fire('changeview', this, view_month )
 		})
 
 		this.on('prev_month', function() {
