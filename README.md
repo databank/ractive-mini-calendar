@@ -1,5 +1,5 @@
 # RactiveMiniCalendar
-RactiveMiniCalendar is a ractive component that shows an inline calendar with possibility to select a date. It is basic 
+RactiveMiniCalendar is a ractive component that shows an inline calendar with possibility to select a date. It does not depend on other libraries other than Ractive. 
 
 
 
@@ -75,4 +75,7 @@ listen for change month view
 		console.log("calendar",c.get('name')," view set to", value )
 	})
 ```
+
+## demo
+
 
