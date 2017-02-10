@@ -5,36 +5,37 @@ var RactiveMiniCalendar = Ractive.extend({
 	template:
 		"<div class='ractive-mini-calendar {{#class}}{{class}}{{else}}blank{{/if}}' style='display: inline-block;{{style}}'>" +
 		"	<input type='hidden' name='{{name}}' value='{{value}}'>"+
-		"	<table>" +
-		"		<thead>" +
-		"			<tr>" +
-		"				<th class='arrow'><a on-click='prev_month'>&lsaquo;</a></th>" +
-		"				<th colspan='5'>" +
-		"					{{head_month_name}} {{head_year}}" +
-		"				</th>" +
-		"				<th class='arrow'><a on-click='next_month'>&rsaquo;</a></th>" +
-		"			</tr>" +
-		"		</thead>"+
-		"		<tbody>"+
-		"			<tr>" +
-		"				<th>Su</th>" +
-		"				<th>Mo</th>" +
-		"				<th>Tu</th>" +
-		"				<th>We</th>" +
-		"				<th>Th</th>" +
-		"				<th>Fr</th>" +
-		"				<th>Sa</th>" +
-		"			</tr>"+
+		"		<div class='top'>"+
+		"			<div class='left'>"+
+		"				<a on-click='prev_month'>&lsaquo;</a>"+
+		"			</div>"+
+		"			<div class='month'>"+
+		"				{{head_month_name}} {{head_year}}"+
+		"			</div>"+
+		"			<div class='right'>"+
+		"				<a on-click='next_month'>&rsaquo;</a>"+
+		"			</div>"+
+		"		</div>"+
+		"		<div class='fc-head'>\
+					<div>Su</div>\
+					<div>Mo</div>\
+					<div>Tu</div>\
+					<div>We</div>\
+					<div>Th</div>\
+					<div>Fr</div>\
+					<div>Sa</div>\
+				</div>\
+				<div class='fc-body'>"+
 		"			{{#w}}"+
-		"			<tr>" +
+		"			<div class='fc-row'>" +
 		"				{{#d}}"+
-		"				<td class='{{c}} {{#out}}out{{/out}} {{#t}}today{{/t}} {{#s}}selected{{/s}}' {{^out}}on-click='@this.setdate(this,ymd)'{{/out}}>{{n}}</td>" +
+		"				<div class='{{#out}}out{{/out}} {{#t}}today{{/t}} {{#s}}selected{{/s}}' {{^out}}on-click='@this.setdate(this,ymd)'{{/out}}>" +
+		"					<div class='dayname'>{{n}}</div>" +
+		"				</div>" +
 		"				{{/d}}"+
-		"			</tr>" +
+		"			</div>" +
 		"			{{/w}}"+
-		"		</tbody>"+
-		"	</table>" +
-		"	{{>content}}"+
+		"		</div>"+
 		"</div>",
 	setdate: function(e,value) {
 		this.set('value',value)
@@ -72,7 +73,7 @@ var RactiveMiniCalendar = Ractive.extend({
 			this.set('head_month', view_month.substr(5,2))-1
 			this.set('head_month_name', monthNames[parseInt(view_month.substr(5,2))-1] )
 			this.set('head_year', view_month.substr(0,4))
-			this.renderCalendar(view_month, $value, $today )
+			this.renderCalendar(view_month, this.get('value'), $today )
 			this.fire('changeview', this, view_month )
 		})
 
@@ -93,7 +94,7 @@ var RactiveMiniCalendar = Ractive.extend({
 			this.set('view_month',next_month.substr(0,7))
 		})
 		this.on('setdate', function(e,p1) {
-			console.log('setdate', e, p1)
+			//console.log('setdate', e, p1)
 		})
 	},
 	data: {},
