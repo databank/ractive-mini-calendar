@@ -32,7 +32,7 @@ var RactiveMiniCalendar = Ractive.extend({
 		"					<div class='dayname'>{{n}}</div>" +
 		"					<div class='events'>"+
 		"						{{#eventlist[ymd]}}"+
-		"							<div class='event' style='background-color: {{.color}}'>{{.summary}}</div>"+
+		"							<div class='event' style='background-color: {{.color}}' on-click='@this.eventclick(this,id)'>{{.summary}}</div>"+
 		"						{{/}}"+
 		"					</div>" +
 		"				</div>" +
@@ -45,6 +45,9 @@ var RactiveMiniCalendar = Ractive.extend({
 		this.set('value',value)
 		this.renderCalendar(this.get('view_month'), value, this.get('today') )
 		this.fire('change', this, value )
+	},
+	eventclick: function(e, eventid ) {
+		this.fire('eventclick', this, eventid )
 	},
 	renderCalendar: function(view_month, selected_date, today ) {
 		//console.log("renderCalendar month=",view_month," selected date=",selected_date, " today=", today )
