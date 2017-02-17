@@ -1,5 +1,4 @@
 
-
 var RactiveMiniCalendar = Ractive.extend({
 	isolated: true,
 	template:
@@ -31,6 +30,11 @@ var RactiveMiniCalendar = Ractive.extend({
 		"				{{#d}}"+
 		"				<div class='{{#out}}out{{/out}} {{#t}}today{{/t}} {{#s}}selected{{/s}}' {{^out}}on-click='@this.setdate(this,ymd)'{{/out}}>" +
 		"					<div class='dayname'>{{n}}</div>" +
+		"					<div class='events'>"+
+		"						{{#eventlist[ymd]}}"+
+		"							<div class='event' style='background-color: {{.color}}'>{{.summary}}</div>"+
+		"						{{/}}"+
+		"					</div>" +
 		"				</div>" +
 		"				{{/d}}"+
 		"			</div>" +
@@ -61,7 +65,6 @@ var RactiveMiniCalendar = Ractive.extend({
 		this.set('w',$w)
 	},
 	init: function () {
-
 		var $today = this.get('today') === undefined ? new Date().toISOString().substr(0,10) : (isNaN(new Date(this.get('today'))) ? new Date().toISOString().substr(0,10) : new Date(this.get('today')).toISOString().substr(0,10))
 		var $value = this.get('value') === undefined ? undefined : (isNaN(new Date(this.get('value'))) ? undefined : new Date(this.get('value')).toISOString().substr(0,10))
 
