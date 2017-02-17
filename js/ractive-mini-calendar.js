@@ -48,6 +48,7 @@ var RactiveMiniCalendar = Ractive.extend({
 	},
 	eventclick: function(e, eventid ) {
 		this.fire('eventclick', this, eventid )
+		return false
 	},
 	renderCalendar: function(view_month, selected_date, today ) {
 		//console.log("renderCalendar month=",view_month," selected date=",selected_date, " today=", today )
