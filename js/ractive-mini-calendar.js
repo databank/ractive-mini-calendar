@@ -91,6 +91,7 @@ var RactiveMiniCalendar = Ractive.extend({
 									).getTime() - (1000*60*60*24)
 								).toISOString()
 			this.set('view_month',prev_month.substr(0,7))
+			return false
 		})
 		this.on('next_month', function() {
 			var next_month = new Date(
@@ -99,6 +100,7 @@ var RactiveMiniCalendar = Ractive.extend({
 									).getTime() + (1000*60*60*24*32)
 								).toISOString()
 			this.set('view_month',next_month.substr(0,7))
+			return false
 		})
 		this.on('setdate', function(e,p1) {
 			//console.log('setdate', e, p1)
