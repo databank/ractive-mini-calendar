@@ -53,7 +53,7 @@ var RactiveMiniCalendar = Ractive.extend({
 	renderCalendar: function(view_month, selected_date, today ) {
 		//console.log("renderCalendar month=",view_month," selected date=",selected_date, " today=", today )
 		var $days_before = new Date(view_month + '-01T00:00:00.000Z').getDay()
-		var $calendar_begin = new Date(view_month + '-01T00:00:00.000Z').getTime() - (1000*60*60*24*$days_before)
+		var $calendar_begin = new Date(view_month + '-01T00:00:00.000Z').getTime() - (1000*60*60*24*($days_before+1))
 		var $w = []
 		for (var i=0;i<=34;i++) {
 			$w[Math.floor(i/7)] = $w[Math.floor(i/7)] || {d:[]}
