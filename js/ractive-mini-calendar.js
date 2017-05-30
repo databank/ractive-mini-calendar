@@ -69,7 +69,7 @@ var RactiveMiniCalendar = Ractive.extend({
 		this.set('w',$w)
 	},
 	init: function () {
-		var $today = this.get('today') === undefined ? new Date().toISOString().substr(0,10) : (isNaN(new Date(this.get('today'))) ? new Date().toISOString().substr(0,10) : new Date(this.get('today')).toISOString().substr(0,10))
+		var $today = this.get('today') === undefined ? new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).substr(-2) + '-' + ('0' + new Date( ).getDate()).substr(-2) : (isNaN(new Date(this.get('today'))) ? new Date().toISOString().substr(0,10) : new Date(this.get('today')).toISOString().substr(0,10))
 		var $value = this.get('value') === undefined ? undefined : (isNaN(new Date(this.get('value'))) ? undefined : new Date(this.get('value')).toISOString().substr(0,10))
 
 		this.set('view_month', $value ? $value.substr(0,7) : $today.substr(0,7))
