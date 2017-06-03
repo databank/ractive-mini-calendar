@@ -2,7 +2,7 @@
 var RactiveMiniCalendar = Ractive.extend({
 	isolated: true,
 	template:
-		"<div class='ractive-mini-calendar {{#class}}{{class}}{{else}}blank{{/if}}' style='display: inline-block;{{style}}'>" +
+		"<div class='ractive-mini-calendar {{#if class}}{{class}}{{else}}blank{{/if}}' style='display: inline-block;{{style}}'>" +
 		"	<input type='hidden' name='{{name}}' value='{{value}}'>"+
 		"		<div class='top'>"+
 		"			<div class='left'>"+
